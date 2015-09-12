@@ -11,4 +11,7 @@
     <!-- elevations -->
     <dimen name="appbar_elevation">8dp</dimen>
 
+    <!-- spacing -->
+    <dimen name="list_top_margin">8dp</dimen>
+
 </resources>
