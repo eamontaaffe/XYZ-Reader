@@ -22,4 +22,14 @@
     <color name="theme_primary_dark">#04561A</color>
     <color name="theme_accent">#04561A</color>
     <color name="ltgray">#ffe0e0e0</color>
+    
+    <!-- Icon colour -->
+    <color name="icon_orange">#FF3B1B</color>
+
+    <!-- Deep Orange -->
+    <color name="deep_orange_100">#FFCCBC</color>
+    <color name="deep_orange_500">#FF5722</color>
+    <color name="deep_orange_700">#E64A19</color>
+    <color name="deep_orange_a400">#FF3D00</color>
+    
 </resources>
