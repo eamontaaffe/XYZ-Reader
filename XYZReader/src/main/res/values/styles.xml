@@ -33,7 +33,11 @@
 
     <!-- Text appearance used for the headline of articles -->
     <style name="Base.TextAppearance.AppCompat.Headline.Bacon">
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">medium</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Subhead.Bacon">
+        <item name="android:fontFamily">thin</item>
     </style>
 
 </resources>
