@@ -152,15 +152,12 @@ public class ArticleListActivity extends ActionBarActivity implements
                             DateUtils.FORMAT_ABBREV_ALL).toString()
                             + " by "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
-            Log.v(LOG_TAG, mCursor.getString(ArticleLoader.Query.PHOTO_URL));
             // Since the library was swapped for Picasso which has caching functionality,
-            // it can be more efficient to load the photo twice rather than both the photo
+            // it can be more efficient to load the same photo twice rather than both the photo
             // and the thumb
             Picasso.with(getApplicationContext())
                     .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
                     .into(holder.thumbnailView);
-
-//            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
         @Override

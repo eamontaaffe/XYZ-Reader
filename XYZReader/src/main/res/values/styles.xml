@@ -31,4 +31,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!-- Text appearance used for the headline of articles -->
+    <style name="Base.TextAppearance.AppCompat.Headline.Bacon">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
