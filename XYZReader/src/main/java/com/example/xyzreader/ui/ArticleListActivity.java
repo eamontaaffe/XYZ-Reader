@@ -152,6 +152,10 @@ public class ArticleListActivity extends ActionBarActivity implements
                             DateUtils.FORMAT_ABBREV_ALL).toString()
                             + " by "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
+            if (holder.bodyPreview != null) {
+                holder.bodyPreview.setText(mCursor.getString(ArticleLoader.Query.BODY));
+            }
             // Since the library was swapped for Picasso which has caching functionality,
             // it can be more efficient to load the same photo twice rather than both the photo
             // and the thumb
@@ -170,12 +174,14 @@ public class ArticleListActivity extends ActionBarActivity implements
         public TheeTwoImageView thumbnailView;
         public TextView titleView;
         public TextView subtitleView;
+        public TextView bodyPreview;
 
         public ViewHolder(View view) {
             super(view);
             thumbnailView = (TheeTwoImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.article_title);
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
+            bodyPreview = (TextView) view.findViewById(R.id.body_preview);
         }
     }
 }
