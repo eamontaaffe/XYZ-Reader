@@ -38,7 +38,11 @@
 
     <style name="Base.TextAppearance.AppCompat.Subhead.Bacon">
         <item name="android:fontFamily">thin</item>
+    </style>
 
+    <style name="TextAppearance.Header.Bacon">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">normal</item>
     </style>
 
     <style name="CollapsingTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title"/>
