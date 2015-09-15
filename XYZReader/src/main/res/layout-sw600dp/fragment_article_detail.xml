@@ -37,9 +37,10 @@
                     android:orientation="vertical">
 
                     <com.example.xyzreader.ui.TheeTwoImageView
+                        android:id="@+id/photo"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:src="@drawable/placeholder_image" />
+                        android:scaleType="centerCrop"/>
 
                     <TextView
                         android:id="@+id/article_title"

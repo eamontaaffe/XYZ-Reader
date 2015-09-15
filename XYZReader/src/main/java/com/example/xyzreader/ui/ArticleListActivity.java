@@ -66,7 +66,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             mTwoPane = true;
         } else {
             mTwoPane = false;
-            getSupportActionBar().setElevation(0f);
         }
 
         if (savedInstanceState == null) {

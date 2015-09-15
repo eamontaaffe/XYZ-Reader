@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
+import com.squareup.picasso.Picasso;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
@@ -158,7 +159,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
+        ImageView photoView = (ImageView) mRootView.findViewById(R.id.photo);
 
 
         if (mCursor != null) {
@@ -176,6 +177,12 @@ public class ArticleDetailFragment extends Fragment implements
                             + mCursor.getString(ArticleLoader.Query.AUTHOR)
                             + "</font>").toString());
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)).toString());
+
+            if (photoView != null) {
+                Picasso.with(getActivity())
+                        .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
+                        .into(photoView);
+            }
 
         } else {
             mRootView.setVisibility(View.GONE);
