@@ -9,7 +9,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -31,14 +32,16 @@ import com.squareup.picasso.Picasso;
  * touched, lead to a {@link ArticleDetailActivity} representing item details. On tablets, the
  * activity presents a grid of items as cards.
  */
-public class ArticleListActivity extends ActionBarActivity implements
+public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static String LOG_TAG = ArticleListActivity.class.getSimpleName();
+    private static final String DETAILFRAGMENT_TAG = "dft";
 
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private boolean mTwoPane = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,16 @@ public class ArticleListActivity extends ActionBarActivity implements
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
+
+        if (findViewById(R.id.detail_container) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+        } else {
+            mTwoPane = false;
+            getSupportActionBar().setElevation(0f);
+        }
 
         if (savedInstanceState == null) {
             refresh();
@@ -134,8 +147,24 @@ public class ArticleListActivity extends ActionBarActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    // TODO start detail activity in pane
+                    if(mTwoPane) {
+                        // In two-pane mode, show the detail view in this activity by
+                        // adding or replacing the detail fragment using a
+                        // fragment transaction.
+                        Bundle args = new Bundle();
+                        args.putLong(ArticleDetailFragment.ARG_ITEM_ID,getItemId(vh.getAdapterPosition()));
+
+                        ArticleDetailFragment fragment = new ArticleDetailFragment();
+                        fragment.setArguments(args);
+
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.detail_container, fragment, DETAILFRAGMENT_TAG)
+                                .commit();
+                    } else {
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                                ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    }
                 }
             });
             return vh;
