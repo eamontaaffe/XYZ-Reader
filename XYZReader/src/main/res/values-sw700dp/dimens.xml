@@ -4,4 +4,7 @@
     <!-- Extra List Item Margin (tablet-only) -->
     <dimen name="detail_view_padding_vertical">@dimen/abc_list_item_padding_horizontal_material</dimen>
     <dimen name="detail_view_padding">@dimen/abc_action_bar_default_height_material</dimen>
+
+    <integer name="list_column_count">2</integer>
+    <dimen name="toolbar_icon_margin_top">?attr/actionBarSize</dimen>
 </resources>

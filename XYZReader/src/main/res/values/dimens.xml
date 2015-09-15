@@ -13,5 +13,6 @@
 
     <!-- spacing -->
     <dimen name="list_top_margin">8dp</dimen>
+    <dimen name="toolbar_icon_margin_top">0dp</dimen>
 
 </resources>

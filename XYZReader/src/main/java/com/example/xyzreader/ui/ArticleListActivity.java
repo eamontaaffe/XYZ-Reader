@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
@@ -183,7 +184,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
 
             if (holder.bodyPreview != null) {
-                holder.bodyPreview.setText(mCursor.getString(ArticleLoader.Query.BODY));
+                holder.bodyPreview.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)).toString());
             }
             // Since the library was swapped for Picasso which has caching functionality,
             // it can be more efficient to load the same photo twice rather than both the photo
