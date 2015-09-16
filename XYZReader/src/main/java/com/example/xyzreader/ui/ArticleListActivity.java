@@ -44,6 +44,9 @@ public class ArticleListActivity extends AppCompatActivity implements
     private RecyclerView mRecyclerView;
     private boolean mTwoPane = false;
 
+    private static String CURRENT_ID = "current_id";
+    private long mCurrentID = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +71,26 @@ public class ArticleListActivity extends AppCompatActivity implements
             mTwoPane = false;
         }
 
+
         if (savedInstanceState == null) {
             refresh();
+        } else {
+            if (savedInstanceState.containsKey(CURRENT_ID)) {
+                mCurrentID = savedInstanceState.getLong(CURRENT_ID);
+            }
+            loadDetailFragment();
         }
     }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putLong(CURRENT_ID, mCurrentID);
+        super.onSaveInstanceState(outState);
+    }
+
+
 
     private void refresh() {
         startService(new Intent(this, UpdaterService.class));
@@ -147,23 +166,15 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO start detail activity in pane
+                    mCurrentID = getItemId(vh.getAdapterPosition());
                     if(mTwoPane) {
                         // In two-pane mode, show the detail view in this activity by
                         // adding or replacing the detail fragment using a
                         // fragment transaction.
-                        Bundle args = new Bundle();
-                        args.putLong(ArticleDetailFragment.ARG_ITEM_ID,getItemId(vh.getAdapterPosition()));
-
-                        ArticleDetailFragment fragment = new ArticleDetailFragment();
-                        fragment.setArguments(args);
-
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.detail_container, fragment, DETAILFRAGMENT_TAG)
-                                .commit();
+                        loadDetailFragment();
                     } else {
                         startActivity(new Intent(Intent.ACTION_VIEW,
-                                ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                                ItemsContract.Items.buildItemUri(mCurrentID)));
                     }
                 }
             });
@@ -197,6 +208,18 @@ public class ArticleListActivity extends AppCompatActivity implements
         public int getItemCount() {
             return mCursor.getCount();
         }
+    }
+
+    private void loadDetailFragment() {
+        Bundle args = new Bundle();
+        args.putLong(ArticleDetailFragment.ARG_ITEM_ID,mCurrentID);
+
+        ArticleDetailFragment fragment = new ArticleDetailFragment();
+        fragment.setArguments(args);
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.detail_container, fragment, DETAILFRAGMENT_TAG)
+                .commit();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
