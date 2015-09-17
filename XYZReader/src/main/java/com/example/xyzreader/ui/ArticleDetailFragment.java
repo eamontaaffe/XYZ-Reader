@@ -1,8 +1,10 @@
 package com.example.xyzreader.ui;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,6 +12,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ShareCompat;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
@@ -51,6 +55,7 @@ public class ArticleDetailFragment extends Fragment implements
     private int mId;
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
+    private FloatingActionButton mShareFab;
 
 //    private ArticleDetailFragmentListener mListener;
 
@@ -107,12 +112,23 @@ public class ArticleDetailFragment extends Fragment implements
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
 
-//        Activity activity = getActivity();
-//        if (activity instanceof ArticleDetailFragmentListener) {
-//            mListener = (ArticleDetailFragmentListener) activity;
-//        } else {
-//            throw new NoSuchMethodError("Activity does not implement ArticleDetailFragmentListener");
-//        }
+        final Activity activity = getActivity();
+        if (activity instanceof ArticleListActivity) {
+            mShareFab = (FloatingActionButton) mRootView.findViewById(R.id.share_fab);
+            mShareFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(activity)
+                            // TODO link share intent to displayed pager
+                            .setType("text/plain")
+                            .setText("Some sample text")
+                            .getIntent(), getString(R.string.action_share)));
+                }
+            });
+        }
+
+
+
 
         mStatusBarColorDrawable = new ColorDrawable(0);
 
