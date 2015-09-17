@@ -33,10 +33,12 @@
     <color name="deep_orange_a400">#FF3D00</color>
 
     <!-- Teal -->
+    <color name="teal_100">#B2DFDB</color>
     <color name="teal_500">#009688</color>
     <color name="teal_700">#00796B</color>
     <color name="teal_a700">#00BFA5</color>
 
     <color name="color_accent">@color/deep_orange_a400</color>
+    <color name="primary_light">@color/teal_100</color>
     
 </resources>
