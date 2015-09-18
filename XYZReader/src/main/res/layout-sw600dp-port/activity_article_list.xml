@@ -62,7 +62,7 @@
             />
         <android.support.v4.widget.SwipeRefreshLayout
             android:background="@drawable/rectangle"
-            android:elevation="8dp"
+            android:elevation="4dp"
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -81,30 +81,4 @@
                 android:scrollbarStyle="outsideOverlay" />
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
-
-
-    <!-- This is used as a strut to create two columns in our RelativeLayout -->
-    <!--<android.support.v4.widget.Space-->
-        <!--android:id="@+id/layout_center"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_centerInParent="true" />-->
-
-
-    <!--&lt;!&ndash; This is used to give the card the appropriate margin-->
-         <!--list_item_extra_padding +-->
-         <!--abc_list_item_padding_horizontal_material &ndash;&gt;-->
-    <!--<android.support.v4.widget.Space-->
-        <!--android:id="@+id/cardviewAligner"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_alignLeft="@id/layout_center"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignStart="@id/layout_center"-->
-        <!--android:layout_marginEnd="@dimen/list_item_extra_padding"-->
-        <!--android:layout_marginRight="@dimen/list_item_extra_padding"-->
-        <!--android:layout_marginTop="?attr/actionBarSize"-->
-        <!--android:elevation="@dimen/appbar_elevation" />-->
-
 </RelativeLayout>

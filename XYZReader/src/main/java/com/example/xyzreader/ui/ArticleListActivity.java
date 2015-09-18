@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.app.FragmentManager;
@@ -18,7 +19,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -216,16 +221,21 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     private void startDetailActivity() {
-        Bundle bundle = ActivityOptions
-                .makeSceneTransitionAnimation(this)
-                .toBundle();
-        startActivity(new Intent(Intent.ACTION_VIEW,
-                ItemsContract.Items.buildItemUri(mCurrentID)),bundle);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = ActivityOptions
+                    .makeSceneTransitionAnimation(this)
+                    .toBundle();
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    ItemsContract.Items.buildItemUri(mCurrentID)), bundle);
+        } else {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    ItemsContract.Items.buildItemUri(mCurrentID)));
+        }
     }
 
     private void loadDetailFragment() {
         Bundle args = new Bundle();
-        args.putLong(ArticleDetailFragment.ARG_ITEM_ID,mCurrentID);
+        args.putLong(ArticleDetailFragment.ARG_ITEM_ID, mCurrentID);
 
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         fragment.setArguments(args);
