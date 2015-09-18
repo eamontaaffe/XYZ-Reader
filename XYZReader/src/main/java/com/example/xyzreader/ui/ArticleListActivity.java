@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.app.ActivityOptions;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -178,8 +179,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                         // fragment transaction.
                         loadDetailFragment();
                     } else {
-                        startActivity(new Intent(Intent.ACTION_VIEW,
-                                ItemsContract.Items.buildItemUri(mCurrentID)));
+                        startDetailActivity();
                     }
                 }
             });
@@ -213,6 +213,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         public int getItemCount() {
             return mCursor.getCount();
         }
+    }
+
+    private void startDetailActivity() {
+        Bundle bundle = ActivityOptions
+                .makeSceneTransitionAnimation(this)
+                .toBundle();
+        startActivity(new Intent(Intent.ACTION_VIEW,
+                ItemsContract.Items.buildItemUri(mCurrentID)),bundle);
     }
 
     private void loadDetailFragment() {

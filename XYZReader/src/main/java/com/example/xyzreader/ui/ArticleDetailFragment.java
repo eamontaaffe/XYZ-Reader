@@ -127,9 +127,6 @@ public class ArticleDetailFragment extends Fragment implements
             });
         }
 
-
-
-
         mStatusBarColorDrawable = new ColorDrawable(0);
 
         bindViews();

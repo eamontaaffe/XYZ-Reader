@@ -29,6 +29,8 @@
 
     <style name="Theme.Bacon.Detail">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowEnterTransition">
+            @transition/detail_activity_enter_transition</item>
     </style>
 
     <!-- Text appearance used for the headline of articles -->
