@@ -1,7 +1,17 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Project Name}
-TODO: Write a project description
+# XYZ-Reader
+## Project 5: Make Your App Material
+A project for Udacity's [Android Developers Nanodegree]{https://www.udacity.com/course/android-developer-nanodegree--nd801}.
+
+This project specifically tests the knowleged learnt in the course [Android Design for Developers]{https://www.udacity.com/course/material-design-for-android-developers--ud862}.
+
+### Project Description
+
+> - **XYZ Reader**: A mock RSS feed reader featuring banner photos and shocking headlines! [Download the starter code here]{https://www.udacity.com/api/nodes/4292653440/supplemental_media/xyzreaderzip/download}.
+
+> The app is currently functional, and works in most cases for most users.
+
+> Your job will be to take the feedback in the UI Review node, and implement changes that will improve the UI and make it conform to Material Design.
+
 ## Installation
 TODO: Describe the installation process
 ## Usage
