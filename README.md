@@ -1,12 +1,12 @@
 # XYZ-Reader
 ## Project 5: Make Your App Material
-A project for Udacity's [Android Developers Nanodegree]{https://www.udacity.com/course/android-developer-nanodegree--nd801}.
+A project for Udacity's [Android Developers Nanodegree](https://www.udacity.com/course/android-developer-nanodegree--nd801).
 
-This project specifically tests the knowleged learnt in the course [Android Design for Developers]{https://www.udacity.com/course/material-design-for-android-developers--ud862}.
+This project specifically tests the knowleged learnt in the course [Android Design for Developers](https://www.udacity.com/course/material-design-for-android-developers--ud862).
 
 ### Project Description
 
-> - **XYZ Reader**: A mock RSS feed reader featuring banner photos and shocking headlines! [Download the starter code here]{https://www.udacity.com/api/nodes/4292653440/supplemental_media/xyzreaderzip/download}.
+> - **XYZ Reader**: A mock RSS feed reader featuring banner photos and shocking headlines! [Download the starter code here](https://www.udacity.com/api/nodes/4292653440/supplemental_media/xyzreaderzip/download).
 
 > The app is currently functional, and works in most cases for most users.
 
